@@ -1,24 +1,48 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import {useRouter} from "next/navigation";
-import {axios} from "axios";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const signup = () => {
+  const router = useRouter();
   const [user, setUser] = React.useState({
     email: "", 
     password: "",
     username: "",
   });
+  const [buttonDisabled, setButtonDisabled] = React.useState(false);
+  const  [loading, setloading] = React.useState(false);
 
   const onSignup = async () => {
+    try{
+      setloading(true);
+      const response = await axios.post("/api/users/signup", user);
+      console.log("Signup success", response.data);
+      router.push("/login");
+    } catch (error:any){
 
+      console.log("Signup failed", error.message);
+      toast.error(error.message);
+
+    } finally{
+      setloading(false);
+    }
   }
+
+  useEffect(() => {
+    if(user.email.length > 0 && user.password.length > 0 && user.username.length > 0) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+  }, [user]);
 
 
   return (
     <div>
-      <h1>Signup</h1>
+      <h1>{loading ? "Processing" : "Signup"}</h1>
       <label>
         Username
         <input
@@ -29,7 +53,7 @@ const signup = () => {
             ...user,
             username: e.target.value,
             })}
-          placeholder="email" 
+          placeholder="username" 
           />
       </label>
       <br /> 
@@ -62,7 +86,7 @@ const signup = () => {
       </label>
       <br /> 
       <button 
-      onClick={onSignup}>Signup!</button>
+      onClick={onSignup}>{buttonDisabled ? "No Signup" : "Signup"}</button>
       <br /> 
       <Link href="/login">Already have an account?</Link>
     </div>
