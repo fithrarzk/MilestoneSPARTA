@@ -23,7 +23,10 @@ export default function UserProfile({params}: any){
 
     <div>    
         <h1>Test Profile Id: {params.id}</h1>
+        <h2>Nomor telepon: 08123456789</h2>
         <button onClick={logout}>Logout</button>
-    </div>)
+    </div>
+    
+    )
     
 }
