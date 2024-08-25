@@ -22,8 +22,8 @@ export default function UserProfile({params}: any){
 
     return (
 
-<div
-      className={"bg-[#ffffff] h-[852px] relative overflow-hidden "}
+    <div
+        className={"bg-[#ffffff] h-[852px] relative overflow-hidden "}
     >
     <div className="md: flex">
         <img
