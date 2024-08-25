@@ -11,6 +11,10 @@ const signup = () => {
     email: "", 
     password: "",
     username: "",
+    NIM: "",
+    jenis_kelamin: "",
+    asal_daerah: "",
+    golongan_darah: "",
   });
   const [buttonDisabled, setButtonDisabled] = React.useState(false);
   const  [loading, setloading] = React.useState(false);
@@ -57,6 +61,62 @@ const signup = () => {
           />
       </label>
       <br /> 
+      <label>
+        NIM
+        <input
+          id="nim" 
+          type="text"
+          value={user.NIM}
+          onChange={(e) => setUser({
+            ...user,
+            NIM: e.target.value,
+            })}
+          placeholder="nim" 
+          />
+      </label>
+      <br />
+      <label>
+        Jenis Kelamin
+        <input
+          id="jenis_kelamin" 
+          type="text"
+          value={user.jenis_kelamin}
+          onChange={(e) => setUser({
+            ...user,
+            jenis_kelamin: e.target.value,
+            })}
+          placeholder="Jenis Kelamin" 
+          />
+      </label>
+      <br />
+      <label>
+        Asal Daerah
+        <input
+          id="asal_daerah" 
+          type="text"
+          value={user.asal_daerah}
+          onChange={(e) => setUser({
+            ...user,
+            asal_daerah: e.target.value,
+            })}
+          placeholder="Asal Daerah" 
+          />
+      </label>
+      <br />
+      <label>
+        Golongan Darah
+        <input
+          id="golongan_darah" 
+          type="text"
+          value={user.golongan_darah}
+          onChange={(e) => setUser({
+            ...user,
+            golongan_darah: e.target.value,
+            })}
+          placeholder="Golongan Darah" 
+          />
+      </label>
+      <br />
       <label>
         Email
         <input
